@@ -1,0 +1,91 @@
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:nb_utils/nb_utils.dart';
+import 'package:masterpost/screens/PhotoEditScreen.dart';
+import 'package:masterpost/utils/Colors.dart';
+import 'package:photo_view/photo_view.dart';
+import 'package:share_plus/share_plus.dart';
+
+class PhotoViewerWidget extends StatefulWidget {
+  static String tag = '/PhotoViewerWidget';
+  final FileSystemEntity fileSystemEntity;
+
+  PhotoViewerWidget(this.fileSystemEntity);
+
+  @override
+  _PhotoViewerWidgetState createState() => _PhotoViewerWidgetState();
+}
+
+class _PhotoViewerWidgetState extends State<PhotoViewerWidget> {
+  ImageProvider imageProvider;
+
+  @override
+  void initState() {
+    super.initState();
+    init();
+  }
+
+  Future<void> init() async {
+    imageProvider = Image.file(File(widget.fileSystemEntity.path)).image;
+    hideStatusBar();
+  }
+
+  @override
+  void setState(fn) {
+    if (mounted) super.setState(fn);
+  }
+
+  @override
+  void dispose() {
+    showStatusBar();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: appBarWidget(
+          '',
+          color: scaffoldColorDark,
+          textColor: Colors.white,
+          actions: [
+            IconButton(
+              icon: Icon(Icons.edit, color: Colors.white),
+              onPressed: () {
+                PhotoEditScreen(file: File(widget.fileSystemEntity.path), isEdit: true,)
+                    .launch(context, isNewTask: true);
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.share, color: Colors.white),
+              onPressed: () {
+                Share.shareFiles([widget.fileSystemEntity.path]);
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.delete, color: Colors.white),
+              onPressed: () {
+                showConfirmDialog(context, 'Você quer deletar esta foto?',
+                        buttonColor: colorPrimary)
+                    .then((value) {
+                  if (value ?? false) {
+                    File(widget.fileSystemEntity.path).deleteSync();
+
+                    finish(context);
+                  }
+                });
+              },
+            ),
+          ],
+        ),
+        body: PhotoView(
+          imageProvider: imageProvider,
+          minScale: PhotoViewComputedScale.contained,
+          maxScale: 1.0,
+        ),
+      ),
+    );
+  }
+}

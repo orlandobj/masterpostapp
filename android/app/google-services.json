@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "137235156121",
+    "project_id": "masterpost-82bed",
+    "storage_bucket": "masterpost-82bed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137235156121:android:503bb4a8daa44b291d3c08",
+        "android_client_info": {
+          "package_name": "com.masterpost.masterpost"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137235156121-opuiorpquuvr8ou2b27n7jqfglpb4aa6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNAW87n_LjqTBiP7NOMhNiUc27vA45fA4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137235156121-opuiorpquuvr8ou2b27n7jqfglpb4aa6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137235156121:android:5775c930205345e41d3c08",
+        "android_client_info": {
+          "package_name": "com.mighty.editor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137235156121-opuiorpquuvr8ou2b27n7jqfglpb4aa6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNAW87n_LjqTBiP7NOMhNiUc27vA45fA4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137235156121-opuiorpquuvr8ou2b27n7jqfglpb4aa6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
