@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:nb_utils/nb_utils.dart';
 import 'package:masterpost/screens/CompressImageScreen.dart';
 import 'package:masterpost/screens/CropImageScreen.dart';
 import 'package:masterpost/screens/PhotoEditScreen.dart';
 import 'package:masterpost/screens/ResizeImageScreen.dart';
 import 'package:masterpost/services/FileService.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 import 'HomeItemWidget.dart';
 

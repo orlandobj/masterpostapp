@@ -4,7 +4,7 @@ part 'cadastro_store.g.dart';
 
 class CadastroStore = _CadastroStore with _$CadastroStore;
 
-abstract class _CadastroStore with Store{
+abstract class _CadastroStore with Store {
   @observable
   String nome = "";
 
@@ -48,5 +48,10 @@ abstract class _CadastroStore with Store{
   void setEmail(String value) => email = value;
 
   @computed
-  bool get isFormValid => pass.length > 3 && pass == confirmPass && telefone.length == 15 && cpf.length == 14 && nome.length > 6;
+  bool get isFormValid =>
+      pass.length > 3 &&
+      pass == confirmPass &&
+      telefone.length == 15 &&
+      cpf.length == 14 &&
+      nome.length > 6;
 }

@@ -1,11 +1,10 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';
-import 'package:flutter/material.dart';
+
 import 'package:crop/crop.dart';
-import 'package:masterpost/commons/widgets/centered_slider_track_shape.dart';
+import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:uuid/uuid.dart';
 
 class ImageCropper extends StatefulWidget {

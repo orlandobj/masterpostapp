@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nb_utils/nb_utils.dart';
 import 'package:masterpost/models/FontData.dart';
 import 'package:masterpost/models/StackedWidgetModel.dart';
 import 'package:masterpost/utils/Colors.dart';
 import 'package:masterpost/utils/Constants.dart';
 import 'package:masterpost/utils/DataProvider.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 import '../models/ColorFilterModel.dart';
 import 'BottomBarItemWidget.dart';

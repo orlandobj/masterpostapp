@@ -6,10 +6,10 @@ import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:image/image.dart' as Img;
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:masterpost/utils/Colors.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:masterpost/utils/Colors.dart';
 
 Future<File> pickImage({ImageSource imageSource}) async {
   PickedFile pickedFile =

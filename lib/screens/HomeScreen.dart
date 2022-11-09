@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nb_utils/nb_utils.dart';
 import 'package:masterpost/components/AppLogoWidget.dart';
 import 'package:masterpost/components/HomeItemListWidget.dart';
 import 'package:masterpost/components/LastEditedPicturesWidget.dart';
-import 'package:masterpost/utils/Common.dart';
-import 'package:masterpost/utils/Constants.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 class HomeScreen extends StatefulWidget {
   static String tag = '/HomeScreen';

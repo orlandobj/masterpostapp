@@ -1,24 +1,15 @@
-import 'dart:io';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:masterpost/models/user_model.dart';
 import 'package:masterpost/screens/SplashScreen.dart';
-import 'package:masterpost/screens/category/category_screen.dart';
-import 'package:masterpost/screens/login/login_screen.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-
+import 'package:masterpost/store/AppStore.dart';
 import 'package:masterpost/stores/login_store.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:masterpost/store/AppStore.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:uuid/uuid.dart';
 
 AppStore appStore = AppStore();

@@ -6,8 +6,6 @@ part 'login_store.g.dart';
 class LoginStore = _LoginStore with _$LoginStore;
 
 abstract class _LoginStore with Store {
-
-
   @observable
   String email = "";
 
@@ -18,7 +16,7 @@ abstract class _LoginStore with Store {
   bool remember = false;
 
   @action
-  toggleRemember(){
+  toggleRemember() {
     remember = !remember;
   }
 
@@ -33,11 +31,14 @@ abstract class _LoginStore with Store {
   @action
   void checkEmailValid(bool check) {
     if (check) {
-      emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
+      emailValid = RegExp(
+              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+          .hasMatch(email);
     } else {
       emailValid = true;
     }
   }
+
   @observable
   String pass = "";
 
@@ -72,7 +73,9 @@ abstract class _LoginStore with Store {
     }
   }
 
-
   @computed
-  bool get isFormValid => pass.length > 7 && RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
+  bool get isFormValid =>
+      pass.length > 7 &&
+      RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+          .hasMatch(email);
 }

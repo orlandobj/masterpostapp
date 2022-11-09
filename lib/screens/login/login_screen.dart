@@ -20,7 +20,8 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMixin {
+class _LoginPageState extends State<LoginPage>
+    with SingleTickerProviderStateMixin {
   bool _obscureText = true;
   bool _invalid = false;
   bool successAuth = true;
@@ -40,9 +41,11 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
     super.didChangeDependencies();
     loginStore = Provider.of<LoginStore>(context);
     userModel = Provider.of<UserModel>(context);
-    if(userModel.nome!=null){
+    if (userModel.nome != null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Perfil()));      });
+        Navigator.of(context)
+            .pushReplacement(MaterialPageRoute(builder: (context) => Perfil()));
+      });
     }
   }
 
@@ -73,7 +76,9 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          backgroundColor: isLoading ? MasterColors.BackgroundIntroColor : MasterColors.grey[50],
+          backgroundColor: isLoading
+              ? MasterColors.BackgroundIntroColor
+              : MasterColors.grey[50],
           body: Observer(
             builder: (context) => Center(
               child: SingleChildScrollView(
@@ -84,7 +89,8 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                   children: [
                     AnimatedContainer(
                       duration: Duration(milliseconds: 2000),
-                      padding: EdgeInsets.symmetric(horizontal: 60, vertical: 0),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 60, vertical: 0),
                       child: Image.asset(
                         "images/intro.png",
                         height: MediaQuery.of(context).size.height * 0.3,
@@ -100,7 +106,12 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                                 child: failedAccess
                                     ? Text(
                                         "Você está fora de sua jornada!",
-                                        style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.042, color: Colors.white),
+                                        style: TextStyle(
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.042,
+                                            color: Colors.white),
                                       )
                                     : CircularProgressIndicator(
                                         color: Colors.white,
@@ -108,17 +119,29 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                               ),
                             )
                           : Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 32, vertical: 20),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 32, vertical: 20),
                               child: Form(
                                 key: _formKey,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                        padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.05),
+                                        padding: EdgeInsets.only(
+                                          left: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.05,
+                                          right: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.05,
+                                        ),
                                         alignment: Alignment.center,
-                                        height: MediaQuery.of(context).size.height * 0.05,
-                                        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(100000)),
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(100000)),
                                         child: TextFormField(
                                           controller: emailController,
                                           onChanged: (value) {
@@ -127,18 +150,22 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                                           },
                                           style: TextStyle(
                                             color: MasterColors.grey[900],
-                                            fontSize: MediaQuery.of(context).size.height * 0.028,
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.028,
                                           ),
                                           decoration: new InputDecoration(
                                             errorStyle: TextStyle(fontSize: 0),
-                                            contentPadding: EdgeInsets.only(
-                                              bottom: MediaQuery.of(context).size.height * 0.025,
-                                            ),
                                             hintText: "E-mail",
-                                            errorText: _invalid ? "inválido!" : null,
+                                            errorText:
+                                                _invalid ? "inválido!" : null,
                                             hintStyle: TextStyle(
                                                 color: MasterColors.primaryBlue,
-                                                fontSize: MediaQuery.of(context).size.height * 0.02,
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.02,
                                                 fontWeight: FontWeight.bold),
                                             enabledBorder: UnderlineInputBorder(
                                               borderSide: BorderSide.none,
@@ -154,21 +181,45 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                                     Container(
                                       alignment: Alignment.topRight,
                                       child: Text(
-                                        loginStore.emailValid ? "" : "Email inválido",
-                                        style: TextStyle(color: Color.fromARGB(255, 211, 46, 46), fontSize: MediaQuery.of(context).size.width * 0.025),
+                                        loginStore.emailValid
+                                            ? ""
+                                            : "Email inválido",
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 211, 46, 46),
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.025),
                                       ),
                                     ),
-                                    SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                                    SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.03),
                                     Container(
-                                      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.05),
+                                      padding: EdgeInsets.only(
+                                          left: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.05,
+                                          right: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.05),
                                       alignment: Alignment.center,
-                                      height: MediaQuery.of(context).size.height * 0.05,
-                                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(100000)),
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(100000)),
                                       child: TextFormField(
                                         controller: senhaController,
                                         style: TextStyle(
                                           color: MasterColors.grey[900],
-                                          fontSize: MediaQuery.of(context).size.height * 0.030,
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.030,
                                         ),
                                         onChanged: (value) {
                                           loginStore.setPass(value);
@@ -176,15 +227,18 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                                         },
                                         obscureText: _obscureText,
                                         decoration: new InputDecoration(
-                                          contentPadding: EdgeInsets.only(
-                                            bottom: MediaQuery.of(context).size.height * 0.025,
-                                          ),
                                           labelStyle: TextStyle(
-                                              color: loginStore.passValid ? MasterColors.primaryBlue : errorColor,
-                                              fontSize: MediaQuery.of(context).size.height * 0.029,
+                                              color: loginStore.passValid
+                                                  ? MasterColors.primaryBlue
+                                                  : errorColor,
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.029,
                                               height: 0),
                                           hintText: "Senha",
-                                          errorText: _invalid ? "inválido!" : null,
+                                          errorText:
+                                              _invalid ? "inválido!" : null,
                                           errorStyle: TextStyle(fontSize: 0),
                                           suffixIcon: IconButton(
                                             iconSize: 20,
@@ -194,9 +248,14 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                                             highlightColor: Colors.transparent,
                                             icon: loginStore.pass.isNotEmpty
                                                 ? Icon(
-                                                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                                                    _obscureText
+                                                        ? Icons.visibility_off
+                                                        : Icons.visibility,
                                                     color: Colors.white,
-                                                    size: MediaQuery.of(context).size.width * 0.04,
+                                                    size: MediaQuery.of(context)
+                                                            .size
+                                                            .width *
+                                                        0.04,
                                                   )
                                                 : Container(),
                                             onPressed: () {
@@ -207,7 +266,10 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                                           ),
                                           hintStyle: TextStyle(
                                               color: MasterColors.primaryBlue,
-                                              fontSize: MediaQuery.of(context).size.height * 0.02,
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.02,
                                               fontWeight: FontWeight.bold),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide.none,
@@ -224,15 +286,24 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                                     Container(
                                       alignment: Alignment.topRight,
                                       child: Text(
-                                        loginStore.passValid ? "" : "Senha inválida",
-                                        style: TextStyle(color: Color.fromARGB(255, 211, 46, 46), fontSize: MediaQuery.of(context).size.width * 0.025),
+                                        loginStore.passValid
+                                            ? ""
+                                            : "Senha inválida",
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 211, 46, 46),
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.025),
                                       ),
                                     ),
                                     SizedBox(
                                       height: 11,
                                     ),
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Observer(
                                           builder: (context) => Container(
@@ -240,28 +311,53 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                                               children: [
                                                 Container(
                                                   decoration: BoxDecoration(
-                                                    color: rememberPassword ? MasterColors.primaryBlue : Colors.transparent,
+                                                    color: rememberPassword
+                                                        ? MasterColors
+                                                            .primaryBlue
+                                                        : Colors.transparent,
                                                     border: Border(
-                                                      top: BorderSide(color: MasterColors.grey),
-                                                      left: BorderSide(color: MasterColors.grey),
-                                                      right: BorderSide(color: MasterColors.grey),
-                                                      bottom: BorderSide(color: MasterColors.grey),
+                                                      top: BorderSide(
+                                                          color: MasterColors
+                                                              .grey),
+                                                      left: BorderSide(
+                                                          color: MasterColors
+                                                              .grey),
+                                                      right: BorderSide(
+                                                          color: MasterColors
+                                                              .grey),
+                                                      bottom: BorderSide(
+                                                          color: MasterColors
+                                                              .grey),
                                                     ),
                                                   ),
-                                                  width: MediaQuery.of(context).size.width * 0.03,
-                                                  height: MediaQuery.of(context).size.width * 0.03,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.03,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.03,
                                                   child: Checkbox(
                                                     value: loginStore.remember,
                                                     onChanged: (value) {
-                                                      loginStore.toggleRemember();
+                                                      loginStore
+                                                          .toggleRemember();
                                                     },
-                                                    side: BorderSide(color: Colors.transparent),
-                                                    checkColor: MasterColors.primaryBlue,
-                                                    activeColor: MasterColors.primaryBlue,
+                                                    side: BorderSide(
+                                                        color:
+                                                            Colors.transparent),
+                                                    checkColor: MasterColors
+                                                        .primaryBlue,
+                                                    activeColor: MasterColors
+                                                        .primaryBlue,
                                                   ),
                                                 ),
                                                 SizedBox(
-                                                  width: MediaQuery.of(context).size.width * 0.02,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.02,
                                                 ),
                                                 GestureDetector(
                                                   onTap: () {
@@ -269,7 +365,14 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                                                   },
                                                   child: Text(
                                                     "Lembrar minha senha",
-                                                    style: TextStyle(color: MasterColors.grey[400], fontSize: MediaQuery.of(context).size.height * 0.02),
+                                                    style: TextStyle(
+                                                        color: MasterColors
+                                                            .grey[400],
+                                                        fontSize: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height *
+                                                            0.02),
                                                   ),
                                                 )
                                               ],
@@ -278,59 +381,110 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
                                         ),
                                         Text(
                                           "Recuperar senha",
-                                          style: TextStyle(color: MasterColors.primaryBlue, fontSize: MediaQuery.of(context).size.height * 0.02),
+                                          style: TextStyle(
+                                              color: MasterColors.primaryBlue,
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.02),
                                         )
                                       ],
                                     ),
                                     SizedBox(
-                                      height: MediaQuery.of(context).size.height * 0.04,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.04,
                                     ),
                                     Divider(
                                       thickness: 2,
                                       color: MasterColors.primaryBlue,
                                     ),
                                     SizedBox(
-                                      height: MediaQuery.of(context).size.height * 0.05,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.05,
                                     ),
                                     Center(
                                       child: GestureDetector(
                                         onTap: () async {
                                           await FirebaseAuth.instance
-                                              .signInWithEmailAndPassword(email: loginStore.email.trim(), password: loginStore.pass)
+                                              .signInWithEmailAndPassword(
+                                                  email:
+                                                      loginStore.email.trim(),
+                                                  password: loginStore.pass)
                                               .then((value) async {
-                                            await loginStore.rememberCredentials();
-                                            var user = await FirebaseFirestore.instance.collection("Users").where("email",isEqualTo: loginStore.email.trim()).get();
-                                            userModel.email = user.docs[0]["email"];
-                                            userModel.nome = user.docs[0]["name"];
-                                            userModel.pro = user.docs[0]["pro"].toDate();
+                                            await loginStore
+                                                .rememberCredentials();
+                                            var user = await FirebaseFirestore
+                                                .instance
+                                                .collection("Users")
+                                                .where("email",
+                                                    isEqualTo:
+                                                        loginStore.email.trim())
+                                                .get();
+                                            userModel.email =
+                                                user.docs[0]["email"];
+                                            userModel.nome =
+                                                user.docs[0]["name"];
+                                            userModel.pro =
+                                                user.docs[0]["pro"].toDate();
                                             Navigator.pop(context);
                                           }).catchError((e) {
                                             print(e);
-                                            showMyDialog(context, "Usuário ou senha inválidos!");
+                                            showMyDialog(context,
+                                                "Usuário ou senha inválidos!");
                                           });
                                         },
                                         child: Container(
                                           alignment: Alignment.center,
-                                          width: MediaQuery.of(context).size.width * 0.4,
-                                          height: MediaQuery.of(context).size.height * 0.05,
-                                          decoration: BoxDecoration(color: MasterColors.primaryBlue, borderRadius: BorderRadius.circular(10000)),
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.4,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.05,
+                                          decoration: BoxDecoration(
+                                              color: MasterColors.primaryBlue,
+                                              borderRadius:
+                                                  BorderRadius.circular(10000)),
                                           child: Text(
                                             "Entrar",
                                             style: TextStyle(
-                                                fontSize: MediaQuery.of(context).size.width * 0.054, color: Colors.white, fontWeight: FontWeight.w500),
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.054,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w500),
                                           ),
                                         ),
                                       ),
                                     ),
                                     SizedBox(
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.02,
                                     ),
                                     Center(
                                       child: GestureDetector(
                                         onTap: () async {
-                                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => Registration()));
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      Registration()));
                                         },
-                                        child: Text("Não possui cadastro ainda? Clique aqui e faça já!",textAlign: TextAlign.center, style: TextStyle(color: MasterColors.red,fontSize: MediaQuery.of(context).size.width*0.04),),
+                                        child: Text(
+                                          "Não possui cadastro ainda? Clique aqui e faça já!",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: MasterColors.red,
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.04),
+                                        ),
                                       ),
                                     ),
                                   ],

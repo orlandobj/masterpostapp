@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:nb_utils/nb_utils.dart';
 import 'package:masterpost/models/ColorFilterModel.dart';
 import 'package:masterpost/utils/DataProvider.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 class FilterSelectionWidget extends StatefulWidget {
   static String tag = '/FilterSelectionWidget';

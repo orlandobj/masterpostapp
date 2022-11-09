@@ -1,8 +1,8 @@
 import 'dart:developer';
-
-import 'package:flutter/widgets.dart';
-import 'package:flutter/gestures.dart';
 import 'dart:math' as math;
+
+import 'package:flutter/gestures.dart';
+import 'package:flutter/widgets.dart';
 
 class ScalingGestureDetector extends StatefulWidget {
   final Widget child;

@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:nb_utils/nb_utils.dart';
 import 'package:masterpost/screens/PhotoEditScreen.dart';
 import 'package:masterpost/utils/Colors.dart';
+import 'package:nb_utils/nb_utils.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:share_plus/share_plus.dart';
 

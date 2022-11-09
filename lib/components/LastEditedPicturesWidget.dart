@@ -1,11 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:nb_utils/nb_utils.dart';
 import 'package:masterpost/services/FileService.dart';
 import 'package:masterpost/utils/Colors.dart';
-import 'package:masterpost/utils/Common.dart';
-import 'package:masterpost/utils/Constants.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 import 'PhotoViewerWidget.dart';
 

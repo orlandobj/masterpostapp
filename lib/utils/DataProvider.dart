@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:masterpost/models/ColorFilterModel.dart';
 import 'package:masterpost/models/FontData.dart';
 import 'package:masterpost/models/FrameModel.dart';
-import 'package:masterpost/utils/Images.dart';
 
 List<String> getSmileys() {
   List emojis = <String>[];

@@ -72,7 +72,8 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
   final GlobalKey screenshotKey = GlobalKey();
 
   /// Used to draw on image
-  SignatureController signatureController = SignatureController(penStrokeWidth: 5, penColor: Colors.green);
+  SignatureController signatureController =
+      SignatureController(penStrokeWidth: 5, penColor: Colors.green);
   List<Offset> points = [];
 
   /// Texts on image
@@ -85,8 +86,14 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
   double topWidgetHeight = 80, bottomWidgetHeight = 80, blur = 0;
 
   /// Variables used to show or hide bottom widgets
-  bool mIsPenColorVisible = false, mIsFilterViewVisible = false, mIsBlurVisible = false, mIsFrameVisible = false;
-  bool mIsBrightnessSliderVisible = false, mIsSaturationSliderVisible = false, mIsHueSliderVisible = false, mIsContrastSliderVisible = false;
+  bool mIsPenColorVisible = false,
+      mIsFilterViewVisible = false,
+      mIsBlurVisible = false,
+      mIsFrameVisible = false;
+  bool mIsBrightnessSliderVisible = false,
+      mIsSaturationSliderVisible = false,
+      mIsHueSliderVisible = false,
+      mIsContrastSliderVisible = false;
   bool mIsMoreConfigWidgetVisible = true;
   bool mIsPenEnabled = false;
   bool mShowBeforeImage = false;
@@ -102,11 +109,10 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance
-        .addPostFrameCallback((_){
-          currentHeight = containerKey.currentContext.size.height;
-          currentWidth = containerKey.currentContext.size.height*0.5625;
-          setState(() { });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      currentHeight = containerKey.currentContext.size.height;
+      currentWidth = containerKey.currentContext.size.height * 0.5625;
+      setState(() {});
     });
     init();
 
@@ -118,7 +124,8 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
     croppedFile = widget.file;
 
     scrollController.addListener(() {
-      if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+      if (scrollController.position.pixels ==
+          scrollController.position.maxScrollExtent) {
         mIsMoreConfigWidgetVisible = false;
       } else {
         mIsMoreConfigWidgetVisible = true;
@@ -127,7 +134,6 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
       setState(() {});
     });
   }
-
 
   Future<void> capture() async {
     appStore.setLoading(true);
@@ -142,7 +148,9 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
     mIsContrastSliderVisible = false;
     setState(() {});
 
-    await screenshotController.captureAndSave(await getFileSavePath(), delay: 1.seconds).then((value) async {
+    await screenshotController
+        .captureAndSave(await getFileSavePath(), delay: 1.seconds)
+        .then((value) async {
       toast('Salvo');
       log(value);
 
@@ -156,7 +164,9 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
   }
 
   void onEraserClick() {
-    showConfirmDialog(context, 'Você quer limpar?', positiveText: "Sim", negativeText: "Não", buttonColor: colorPrimary).then((value) {
+    showConfirmDialog(context, 'Você quer limpar?',
+            positiveText: "Sim", negativeText: "Não", buttonColor: colorPrimary)
+        .then((value) {
       if (value ?? false) {
         mIsBlurVisible = false;
         mIsFilterViewVisible = false;
@@ -207,10 +217,13 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
               child: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.03),
+                    padding: EdgeInsets.all(
+                        MediaQuery.of(context).size.width * 0.03),
                     child: Text(
                       "Camadas",
-                      style: TextStyle(color: Colors.black, fontSize: MediaQuery.of(context).size.width * 0.05),
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: MediaQuery.of(context).size.width * 0.05),
                     ),
                   ),
                   Container(
@@ -224,7 +237,8 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                           if (oldIndex < newIndex) {
                             newIndex -= 1;
                           }
-                          final StackedWidgetModel item = mStackedWidgetList.removeAt(oldIndex);
+                          final StackedWidgetModel item =
+                              mStackedWidgetList.removeAt(oldIndex);
                           mStackedWidgetList.insert(newIndex, item);
                         });
                         setState(() {});
@@ -234,11 +248,18 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                               title: Column(
                                 children: [
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Container(
-                                          height: MediaQuery.of(context).size.width * 0.3,
-                                          width: MediaQuery.of(context).size.width * 0.5,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.3,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.5,
                                           child: StackedWidgetComponent(
                                             [e],
                                             centered: true,
@@ -277,7 +298,8 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
     String text = await showInDialog(context, child: TextEditorDialog());
 
     if (text.validate().isNotEmpty) {
-      arrChangedStackedWidget.add(mStackedWidgetList.map((item) => item).toList());
+      arrChangedStackedWidget
+          .add(mStackedWidgetList.map((item) => item).toList());
       arrChangeType.add("stack");
       mStackedWidgetList.add(
         StackedWidgetModel(
@@ -313,7 +335,8 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
     String text = await showInDialog(context, child: TextEditorDialog());
 
     if (text.validate().isNotEmpty) {
-      arrChangedStackedWidget.add(mStackedWidgetList.map((item) => item).toList());
+      arrChangedStackedWidget
+          .add(mStackedWidgetList.map((item) => item).toList());
       arrChangeType.add("stack");
       mStackedWidgetList.add(
         StackedWidgetModel(
@@ -348,10 +371,12 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
     appStore.setLoading(true);
     await 300.milliseconds.delay;
 
-    String emoji = await showModalBottomSheet(context: context, builder: (_) => EmojiPickerBottomSheet());
+    String emoji = await showModalBottomSheet(
+        context: context, builder: (_) => EmojiPickerBottomSheet());
 
     if (emoji.validate().isNotEmpty) {
-      arrChangedStackedWidget.add(mStackedWidgetList.map((item) => item).toList());
+      arrChangedStackedWidget
+          .add(mStackedWidgetList.map((item) => item).toList());
       arrChangeType.add("stack");
       mStackedWidgetList.add(
         StackedWidgetModel(
@@ -384,10 +409,12 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
     appStore.setLoading(true);
     await 300.milliseconds.delay;
 
-    String sticker = await showModalBottomSheet(context: context, builder: (_) => StickerPickerBottomSheet());
+    String sticker = await showModalBottomSheet(
+        context: context, builder: (_) => StickerPickerBottomSheet());
 
     if (sticker.validate().isNotEmpty) {
-      arrChangedStackedWidget.add(mStackedWidgetList.map((item) => item).toList());
+      arrChangedStackedWidget
+          .add(mStackedWidgetList.map((item) => item).toList());
       arrChangeType.add("stack");
       mStackedWidgetList.add(
         StackedWidgetModel(
@@ -434,14 +461,16 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                   onTap: () {
                     gallery = false;
                     Navigator.pop(context);
-
                   },
                   child: Container(
-                    padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.01),
+                    padding: EdgeInsets.all(
+                        MediaQuery.of(context).size.width * 0.01),
                     color: Colors.green,
                     child: Text(
                       "Nova foto",
-                      style: TextStyle(color: Colors.white, fontSize: MediaQuery.of(context).size.width * 0.03),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: MediaQuery.of(context).size.width * 0.03),
                     ),
                   ),
                 ),
@@ -451,11 +480,14 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                     Navigator.pop(context);
                   },
                   child: Container(
-                    padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.01),
+                    padding: EdgeInsets.all(
+                        MediaQuery.of(context).size.width * 0.01),
                     color: Colors.red,
                     child: Text(
                       "Galeria",
-                      style: TextStyle(color: Colors.white, fontSize: MediaQuery.of(context).size.width * 0.03),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: MediaQuery.of(context).size.width * 0.03),
                     ),
                   ),
                 ),
@@ -467,13 +499,11 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
       if (gallery) {
         image = await ImagePicker().getImage(source: ImageSource.gallery);
       } else {
-        try{
+        try {
           image = await ImagePicker().getImage(source: ImageSource.camera);
-
-        }catch(e){
+        } catch (e) {
           print(e);
         }
-
       }
       if (image == null) {
         appStore.setLoading(false);
@@ -493,11 +523,14 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                     Navigator.of(context).pop();
                   },
                   child: Container(
-                    padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.01),
+                    padding: EdgeInsets.all(
+                        MediaQuery.of(context).size.width * 0.01),
                     color: Colors.green,
                     child: Text(
                       "Sim",
-                      style: TextStyle(color: Colors.white, fontSize: MediaQuery.of(context).size.width * 0.03),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: MediaQuery.of(context).size.width * 0.03),
                     ),
                   ),
                 ),
@@ -507,11 +540,14 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                     Navigator.of(context).pop();
                   },
                   child: Container(
-                    padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.01),
+                    padding: EdgeInsets.all(
+                        MediaQuery.of(context).size.width * 0.01),
                     color: Colors.red,
                     child: Text(
                       "Não",
-                      style: TextStyle(color: Colors.white, fontSize: MediaQuery.of(context).size.width * 0.03),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: MediaQuery.of(context).size.width * 0.03),
                     ),
                   ),
                 ),
@@ -545,11 +581,14 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
       });
       Dio dio = new Dio();
       print(HttpHeaders.authorizationHeader);
-      dio.options.headers[HttpHeaders.authorizationHeader] = "Basic MTE5Mzg6NWRxMjlobHZwamtoYzBva2M1ZTg1czExZ2FhdjFrNmFicHBjbTNsMjN1bXFlN2Z0a2I5Nw==";
+      dio.options.headers[HttpHeaders.authorizationHeader] =
+          "Basic MTE5Mzg6NWRxMjlobHZwamtoYzBva2M1ZTg1czExZ2FhdjFrNmFicHBjbTNsMjN1bXFlN2Z0a2I5Nw==";
       dio.options.responseType = ResponseType.bytes;
-      var response = await dio.post("https://clippingmagic.com/api/v1/images", data: formData);
+      var response = await dio.post("https://clippingmagic.com/api/v1/images",
+          data: formData);
       if (response.data != null) {
-        arrChangedStackedWidget.add(mStackedWidgetList.map((item) => item).toList());
+        arrChangedStackedWidget
+            .add(mStackedWidgetList.map((item) => item).toList());
         arrChangeType.add("stack");
         mStackedWidgetList.add(
           StackedWidgetModel(
@@ -567,7 +606,8 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
         setState(() {});
       }
     } else {
-      arrChangedStackedWidget.add(mStackedWidgetList.map((item) => item).toList());
+      arrChangedStackedWidget
+          .add(mStackedWidgetList.map((item) => item).toList());
       arrChangeType.add("stack");
       mStackedWidgetList.add(
         StackedWidgetModel(
@@ -595,7 +635,9 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
           return Dialog(
             child: Container(
               child: StreamBuilder(
-                  stream: FirebaseFirestore.instance.collection("Categories").snapshots(),
+                  stream: FirebaseFirestore.instance
+                      .collection("Categories")
+                      .snapshots(),
                   builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
                       List<Widget> widgets = [];
@@ -603,30 +645,53 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                         widgets.add(Column(
                           children: [
                             Container(
-                                margin: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.05),
+                                margin: EdgeInsets.only(
+                                    left: MediaQuery.of(context).size.width *
+                                        0.05),
                                 child: Text(
                                   doc["name"],
-                                  style: TextStyle(color: MasterColors.black, fontSize: MediaQuery.of(context).size.width * 0.06),
+                                  style: TextStyle(
+                                      color: MasterColors.black,
+                                      fontSize:
+                                          MediaQuery.of(context).size.width *
+                                              0.06),
                                 )),
                             SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
                                 child: StreamBuilder(
-                                    stream: FirebaseFirestore.instance.collection("Images").where("category", isEqualTo: doc["name"]).snapshots(),
-                                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                                    stream: FirebaseFirestore.instance
+                                        .collection("Images")
+                                        .where("category",
+                                            isEqualTo: doc["name"])
+                                        .snapshots(),
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot snapshot) {
                                       if (snapshot.hasData) {
                                         List<Widget> listImages = [];
-                                        for (var element in snapshot.data.docs) {
+                                        for (var element
+                                            in snapshot.data.docs) {
                                           print(element["path"]);
                                           listImages.add(
                                             GestureDetector(
                                               onTap: () async {
-                                                getApplicationDocumentsDirectory().then((value) async {
-                                                  File image =
-                                                      File(value.path + "/" + "images/" + element["path"].replaceAll(new RegExp(r'[^\w\s]+'), '') + ".jpg");
+                                                getApplicationDocumentsDirectory()
+                                                    .then((value) async {
+                                                  File image = File(value.path +
+                                                      "/" +
+                                                      "images/" +
+                                                      element["path"]
+                                                          .replaceAll(
+                                                              new RegExp(
+                                                                  r'[^\w\s]+'),
+                                                              '') +
+                                                      ".jpg");
                                                   if (!image.existsSync()) {
                                                     print("aaaaaaaaaaaa");
-                                                    await image.create(recursive: true);
-                                                    await Dio().download(element["path"], image.path);
+                                                    await image.create(
+                                                        recursive: true);
+                                                    await Dio().download(
+                                                        element["path"],
+                                                        image.path);
                                                   }
                                                   setState(() {
                                                     croppedFile = image;
@@ -636,11 +701,23 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                                                 });
                                               },
                                               child: Container(
-                                                height: MediaQuery.of(context).size.width * 0.5,
-                                                width: MediaQuery.of(context).size.width * 0.3,
-                                                decoration: BoxDecoration(color: Colors.grey),
-                                                margin: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.05),
-                                                child: Image.network(element["path"]),
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.5,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.3,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.grey),
+                                                margin: EdgeInsets.only(
+                                                    left: MediaQuery.of(context)
+                                                            .size
+                                                            .width *
+                                                        0.05),
+                                                child: Image.network(
+                                                    element["path"]),
                                               ),
                                             ),
                                           );
@@ -803,13 +880,21 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
 
     return WillPopScope(
       onWillPop: () async {
-        DateTime now = DateTime.now();
-        if (currentBackPressTime == null || now.difference(currentBackPressTime) > Duration(seconds: 2)) {
-          currentBackPressTime = now;
-          toast('Pressione novamente para sair do aplicativo');
+        await showConfirmDialog(context, 'Sua imagem editada será perdida',
+                positiveText: "Sim",
+                negativeText: "Não",
+                buttonColor: colorPrimary)
+            .then((value) async {
+          if (value ?? false) {
+            String tempPath = (await getApplicationDocumentsDirectory()).path;
+
+            HomeScreen().launch(context, isNewTask: true);
+            await Directory("$tempPath/tempImages/").delete(recursive: true);
+            return Future.value(false);
+          }
           return Future.value(false);
-        }
-        return Future.value(true);
+        });
+        return Future.value(false);
       },
       child: Scaffold(
         key: scaffoldKey,
@@ -831,14 +916,23 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                       children: [
                         GestureDetector(
                           onTap: () async {
-                            showConfirmDialog(context, 'Sua imagem editada será perdida', positiveText: "Sim", negativeText: "Não", buttonColor: colorPrimary)
+                            await showConfirmDialog(
+                                    context, 'Sua imagem editada será perdida',
+                                    positiveText: "Sim",
+                                    negativeText: "Não",
+                                    buttonColor: colorPrimary)
                                 .then((value) async {
                               if (value ?? false) {
-                                String tempPath = (await getApplicationDocumentsDirectory()).path;
+                                String tempPath =
+                                    (await getApplicationDocumentsDirectory())
+                                        .path;
 
                                 HomeScreen().launch(context, isNewTask: true);
-                                await Directory("$tempPath/tempImages/").delete(recursive: true);
+                                await Directory("$tempPath/tempImages/")
+                                    .delete(recursive: true);
+                                return Future.value(false);
                               }
+                              return Future.value(false);
                             });
                           },
                           child: Icon(
@@ -853,29 +947,43 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                           children: [
                             Container(
                               height: MediaQuery.of(context).size.width * 0.08,
-                              margin: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.05),
+                              margin: EdgeInsets.only(
+                                  right:
+                                      MediaQuery.of(context).size.width * 0.05),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
                                     "Stories",
                                     style: TextStyle(
-                                        color: MasterColors.grey[900], fontSize: MediaQuery.of(context).size.width * 0.03, fontWeight: FontWeight.bold),
+                                        color: MasterColors.grey[900],
+                                        fontSize:
+                                            MediaQuery.of(context).size.width *
+                                                0.03,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                   Text(
                                     "Status",
                                     style: TextStyle(
-                                        color: MasterColors.grey[900], fontSize: MediaQuery.of(context).size.width * 0.03, fontWeight: FontWeight.bold),
+                                        color: MasterColors.grey[900],
+                                        fontSize:
+                                            MediaQuery.of(context).size.width *
+                                                0.03,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
                             ),
                             GestureDetector(
                               onTap: () {
-                                cropKey.currentState.controller.aspectRatio = 0.5625;
-                                currentHeight = containerKey.currentContext.size.height;
-                                currentWidth = containerKey.currentContext.size.height*0.5625;
-                                setState(() { });
+                                cropKey.currentState.controller.aspectRatio =
+                                    0.5625;
+                                currentHeight =
+                                    containerKey.currentContext.size.height;
+                                currentWidth =
+                                    containerKey.currentContext.size.height *
+                                        0.5625;
+                                setState(() {});
                                 print("deu");
                               },
                               child: Container(
@@ -883,23 +991,44 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                                 height: MediaQuery.of(context).size.width * 0.2,
                                 width: MediaQuery.of(context).size.width * 0.12,
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width * 0.02),
-                                    border: Border.all(color: MasterColors.black),
+                                    borderRadius: BorderRadius.circular(
+                                        MediaQuery.of(context).size.width *
+                                            0.02),
+                                    border:
+                                        Border.all(color: MasterColors.black),
                                     color: MasterColors.red),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
                                       "1080",
-                                      style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.025, color: Colors.white, fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.025,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     Text(
                                       "x",
-                                      style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.025, color: Colors.white, fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.025,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     Text(
                                       "1920",
-                                      style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.025, color: Colors.white, fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.025,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                   ],
                                 ),
@@ -910,14 +1039,20 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                             ),
                             Container(
                               height: MediaQuery.of(context).size.width * 0.08,
-                              margin: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.05),
+                              margin: EdgeInsets.only(
+                                  right:
+                                      MediaQuery.of(context).size.width * 0.05),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
                                     "Feed",
                                     style: TextStyle(
-                                        color: MasterColors.grey[900], fontSize: MediaQuery.of(context).size.width * 0.03, fontWeight: FontWeight.bold),
+                                        color: MasterColors.grey[900],
+                                        fontSize:
+                                            MediaQuery.of(context).size.width *
+                                                0.03,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
@@ -925,33 +1060,57 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                             GestureDetector(
                               onTap: () {
                                 cropKey.currentState.controller.aspectRatio = 1;
-                                currentHeight = containerKey.currentContext.size.width;
-                                currentWidth = containerKey.currentContext.size.width;
-                                setState((){});
+                                currentHeight =
+                                    containerKey.currentContext.size.width;
+                                currentWidth =
+                                    containerKey.currentContext.size.width;
+                                setState(() {});
                                 print("deu");
                               },
                               child: Container(
                                 alignment: Alignment.center,
-                                height: MediaQuery.of(context).size.width * 0.12,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.12,
                                 width: MediaQuery.of(context).size.width * 0.12,
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width * 0.02),
-                                    border: Border.all(color: MasterColors.black),
+                                    borderRadius: BorderRadius.circular(
+                                        MediaQuery.of(context).size.width *
+                                            0.02),
+                                    border:
+                                        Border.all(color: MasterColors.black),
                                     color: MasterColors.red),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
                                       "1080",
-                                      style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.025, color: Colors.white, fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.025,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     Text(
                                       "x",
-                                      style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.025, color: Colors.white, fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.025,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     Text(
                                       "1080",
-                                      style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.025, color: Colors.white, fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.025,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
                                     ),
                                   ],
                                 ),
@@ -967,8 +1126,8 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                               isRotate = false;
                               isAjust = false;
 
-
-                              var teste = await cropKey.currentState.cropImage();
+                              var teste =
+                                  await cropKey.currentState.cropImage();
                               croppedFile = teste;
                               cropKey.currentState.controller.rotation = 0;
                               cropKey.currentState.controller.scale = 1;
@@ -994,7 +1153,7 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                           child: Center(
                             child: Container(
                               width: currentWidth,
-                              height:currentHeight,
+                              height: currentHeight,
                               child: Screenshot(
                                 controller: screenshotController,
                                 key: screenshotKey,
@@ -1003,8 +1162,10 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                                   children: [
                                     (filter != null && filter.matrix != null)
                                         ? ColorFiltered(
-                                            colorFilter: ColorFilter.matrix(filter.matrix),
-                                            child: Image.file(croppedFile, fit: BoxFit.fitWidth),
+                                            colorFilter: ColorFilter.matrix(
+                                                filter.matrix),
+                                            child: Image.file(croppedFile,
+                                                fit: BoxFit.fitWidth),
                                           )
                                         : ImageFilterWidget(
                                             brightness: brightness,
@@ -1028,7 +1189,8 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                                       ignoring: true,
                                       child: ClipRRect(
                                         child: BackdropFilter(
-                                          filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
+                                          filter: ImageFilter.blur(
+                                              sigmaX: blur, sigmaY: blur),
                                           child: Container(
                                             alignment: Alignment.center,
                                             color: Colors.grey.withOpacity(0.1),
@@ -1036,14 +1198,19 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                                         ),
                                       ),
                                     ),
-                                    (filter != null && filter.color != null && !isRotate)
+                                    (filter != null &&
+                                            filter.color != null &&
+                                            !isRotate)
                                         ? Container(
                                             height: context.height(),
                                             width: context.width(),
                                             color: Colors.black12,
                                             child: SizedBox(),
                                           ).withShaderMaskGradient(
-                                            LinearGradient(colors: filter.color, begin: Alignment.topLeft, end: Alignment.bottomRight),
+                                            LinearGradient(
+                                                colors: filter.color,
+                                                begin: Alignment.topLeft,
+                                                end: Alignment.bottomRight),
                                             blendMode: BlendMode.srcOut,
                                           )
                                         : SizedBox(),
@@ -1059,7 +1226,6 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                                           )
                                         : SizedBox(),
                                     StackedWidgetComponent(mStackedWidgetList),
-
                                   ],
                                 ),
                               ),
@@ -1087,8 +1253,10 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                                 ColorSelectorBottomSheet(
                                   list: penColors,
                                   onColorSelected: (Color color) {
-                                    List<Point> tempPoints = signatureController.points;
-                                    signatureController = SignatureController(penStrokeWidth: 5, penColor: color);
+                                    List<Point> tempPoints =
+                                        signatureController.points;
+                                    signatureController = SignatureController(
+                                        penStrokeWidth: 5, penColor: color);
 
                                     tempPoints.forEach((element) {
                                       signatureController.addPoint(element);
@@ -1270,7 +1438,8 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                         ),
 
                         /// Show preview of edited image before save
-                        if (mShowBeforeImage) Image.file(croppedFile, fit: BoxFit.cover),
+                        if (mShowBeforeImage)
+                          Image.file(croppedFile, fit: BoxFit.cover),
                       ],
                     ),
                   ).expand(),
@@ -1285,29 +1454,77 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                                 controller: scrollController,
                                 scrollDirection: Axis.horizontal,
                                 children: [
-                                  BottomBarItemWidget(title: 'Borracha', icons: Icon(FontAwesomeIcons.eraser).icon, onTap: () => onEraserClick()),
-                                  BottomBarItemWidget(title: 'Camadas', icons: Icon(FontAwesomeIcons.layerGroup).icon, onTap: () => onLayerClick()),
-                                  BottomBarItemWidget(title: 'Imagem', icons: Icon(FontAwesomeIcons.image).icon, onTap: () => onImageClick()),
-                                  BottomBarItemWidget(title: 'Neon', icons: Icon(Icons.text_fields_rounded).icon, onTap: () => onNeonLightClick()),
-                                  BottomBarItemWidget(title: 'Emoji', icons: Icon(FontAwesomeIcons.smile).icon, onTap: () => onEmojiClick()),
-                                  BottomBarItemWidget(title: 'Stickers', icons: Icon(FontAwesomeIcons.smileWink).icon, onTap: () => onStickerClick()),
+                                  BottomBarItemWidget(
+                                      title: 'Borracha',
+                                      icons: Icon(FontAwesomeIcons.eraser).icon,
+                                      onTap: () => onEraserClick()),
+                                  BottomBarItemWidget(
+                                      title: 'Camadas',
+                                      icons: Icon(FontAwesomeIcons.layerGroup)
+                                          .icon,
+                                      onTap: () => onLayerClick()),
+                                  BottomBarItemWidget(
+                                      title: 'Imagem',
+                                      icons: Icon(FontAwesomeIcons.image).icon,
+                                      onTap: () => onImageClick()),
+                                  BottomBarItemWidget(
+                                      title: 'Neon',
+                                      icons:
+                                          Icon(Icons.text_fields_rounded).icon,
+                                      onTap: () => onNeonLightClick()),
+                                  BottomBarItemWidget(
+                                      title: 'Emoji',
+                                      icons: Icon(FontAwesomeIcons.smile).icon,
+                                      onTap: () => onEmojiClick()),
+                                  BottomBarItemWidget(
+                                      title: 'Stickers',
+                                      icons:
+                                          Icon(FontAwesomeIcons.smileWink).icon,
+                                      onTap: () => onStickerClick()),
 
                                   /// Will be added in next update due to multiple finger bug
                                   //BottomBarItemWidget(title: 'Pen', icons: Icon(FontAwesomeIcons.penFancy).icon, onTap: () => onPenClick()),
 
-                                  BottomBarItemWidget(title: 'Brilho', icons: Icon(Icons.brightness_2_outlined).icon, onTap: () => onBrightnessSliderClick()),
-                                  BottomBarItemWidget(title: 'Contraste', icons: Icon(Icons.brightness_4_outlined).icon, onTap: () => onContrastSliderClick()),
-                                  BottomBarItemWidget(title: 'Saturação', icons: Icon(Icons.brightness_4_sharp).icon, onTap: () => onSaturationSliderClick()),
-                                  BottomBarItemWidget(title: 'Matiz', icons: Icon(Icons.brightness_medium_sharp).icon, onTap: () => onHueSliderClick()),
-                                  BottomBarItemWidget(title: 'Borrão', icons: Icon(MaterialCommunityIcons.blur).icon, onTap: () => onBlurClick()),
-                                  BottomBarItemWidget(title: 'Filtro', icons: Icon(Icons.photo).icon, onTap: () => onFilterClick()),
+                                  BottomBarItemWidget(
+                                      title: 'Brilho',
+                                      icons: Icon(Icons.brightness_2_outlined)
+                                          .icon,
+                                      onTap: () => onBrightnessSliderClick()),
+                                  BottomBarItemWidget(
+                                      title: 'Contraste',
+                                      icons: Icon(Icons.brightness_4_outlined)
+                                          .icon,
+                                      onTap: () => onContrastSliderClick()),
+                                  BottomBarItemWidget(
+                                      title: 'Saturação',
+                                      icons:
+                                          Icon(Icons.brightness_4_sharp).icon,
+                                      onTap: () => onSaturationSliderClick()),
+                                  BottomBarItemWidget(
+                                      title: 'Matiz',
+                                      icons: Icon(Icons.brightness_medium_sharp)
+                                          .icon,
+                                      onTap: () => onHueSliderClick()),
+                                  BottomBarItemWidget(
+                                      title: 'Borrão',
+                                      icons: Icon(MaterialCommunityIcons.blur)
+                                          .icon,
+                                      onTap: () => onBlurClick()),
+                                  BottomBarItemWidget(
+                                      title: 'Filtro',
+                                      icons: Icon(Icons.photo).icon,
+                                      onTap: () => onFilterClick()),
                                 ],
                               ),
                               Positioned(
                                 child: AnimatedCrossFade(
-                                  firstChild: Icon(Icons.arrow_forward_ios_rounded, color: Colors.grey),
+                                  firstChild: Icon(
+                                      Icons.arrow_forward_ios_rounded,
+                                      color: Colors.grey),
                                   secondChild: Offstage(),
-                                  crossFadeState: mIsMoreConfigWidgetVisible ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                                  crossFadeState: mIsMoreConfigWidgetVisible
+                                      ? CrossFadeState.showFirst
+                                      : CrossFadeState.showSecond,
                                   duration: 700.milliseconds,
                                 ),
                                 right: 8,
@@ -1327,12 +1544,16 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                           onTap: !widget.isEdit
                               ? () {}
                               : () async {
-                                  showConfirmDialog(context, 'Sua imagem editada será excluída',
-                                          positiveText: "Sim", negativeText: "Não", buttonColor: colorPrimary)
+                                  showConfirmDialog(context,
+                                          'Sua imagem editada será excluída',
+                                          positiveText: "Sim",
+                                          negativeText: "Não",
+                                          buttonColor: colorPrimary)
                                       .then((value) async {
                                     if (value ?? false) {
                                       await widget.file.delete();
-                                      Gallery().launch(context, isNewTask: true);
+                                      Gallery()
+                                          .launch(context, isNewTask: true);
                                     }
                                   });
                                 },
@@ -1341,12 +1562,17 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                             children: [
                               Icon(
                                 FontAwesomeIcons.trash,
-                                color: widget.isEdit ? Colors.white : Colors.grey,
+                                color:
+                                    widget.isEdit ? Colors.white : Colors.grey,
                                 size: MediaQuery.of(context).size.height * 0.04,
                               ),
                               Text(
                                 "excluir",
-                                style: TextStyle(color: Colors.white, fontSize: MediaQuery.of(context).size.height * 0.02),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize:
+                                        MediaQuery.of(context).size.height *
+                                            0.02),
                               )
                             ],
                           ),
@@ -1356,7 +1582,8 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                             if (arrChangeType.length > 0) {
                               if (arrChangeType.last == "stack") {
                                 print(arrChangedStackedWidget);
-                                mStackedWidgetList = arrChangedStackedWidget.last;
+                                mStackedWidgetList =
+                                    arrChangedStackedWidget.last;
                                 arrChangedStackedWidget.removeLast();
                                 arrChangeType.removeLast();
                               } else if (arrChangeType.last == "image") {
@@ -1377,7 +1604,11 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                               ),
                               Text(
                                 "desfazer",
-                                style: TextStyle(color: Colors.white, fontSize: MediaQuery.of(context).size.height * 0.02),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize:
+                                        MediaQuery.of(context).size.height *
+                                            0.02),
                               )
                             ],
                           ),
@@ -1396,7 +1627,11 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                               ),
                               Text(
                                 "substituir",
-                                style: TextStyle(color: Colors.white, fontSize: MediaQuery.of(context).size.height * 0.02),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize:
+                                        MediaQuery.of(context).size.height *
+                                            0.02),
                               )
                             ],
                           ),
@@ -1407,7 +1642,8 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                               isRotate = !isRotate;
                             });
                             if (!isRotate) {
-                              var teste = await cropKey.currentState.cropImage();
+                              var teste =
+                                  await cropKey.currentState.cropImage();
                               arrChangedImage.add(croppedFile);
                               arrChangeType.add("image");
                               croppedFile = teste;
@@ -1421,12 +1657,17 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                             children: [
                               Icon(
                                 FontAwesomeIcons.cut,
-                                color: isRotate ? MasterColors.red : Colors.white,
+                                color:
+                                    isRotate ? MasterColors.red : Colors.white,
                                 size: MediaQuery.of(context).size.height * 0.04,
                               ),
                               Text(
                                 "recortar",
-                                style: TextStyle(color: Colors.white, fontSize: MediaQuery.of(context).size.height * 0.02),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize:
+                                        MediaQuery.of(context).size.height *
+                                            0.02),
                               )
                             ],
                           ),
@@ -1441,7 +1682,10 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                             ),
                             Text(
                               "ajustes",
-                              style: TextStyle(color: Colors.white, fontSize: MediaQuery.of(context).size.height * 0.02),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: MediaQuery.of(context).size.height *
+                                      0.02),
                             )
                           ],
                         ).onTap(() {
@@ -1459,7 +1703,10 @@ class PhotoEditScreenState extends State<PhotoEditScreen> {
                             ),
                             Text(
                               "texto",
-                              style: TextStyle(color: Colors.white, fontSize: MediaQuery.of(context).size.height * 0.02),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: MediaQuery.of(context).size.height *
+                                      0.02),
                             )
                           ],
                         ).onTap(onTextClick),

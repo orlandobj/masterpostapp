@@ -1,14 +1,13 @@
 import 'dart:io';
 import 'dart:ui' as ui;
+
+import 'package:crop/crop.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:crop/crop.dart';
 import 'package:masterpost/commons/widgets/centered_slider_track_shape.dart';
 import 'package:masterpost/utils/masterColors.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class ModifyImage extends StatefulWidget {
   ModifyImage(path){

@@ -3,8 +3,6 @@ import 'dart:math' as math; // import this
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:masterpost/screens/courses/widgets/course_card.dart';
-import 'package:masterpost/screens/home/widgets/carousel.dart';
-import 'package:masterpost/screens/home/widgets/home_image.dart';
 import 'package:masterpost/screens/home/widgets/nav_drawer.dart';
 import 'package:masterpost/utils/masterColors.dart';
 

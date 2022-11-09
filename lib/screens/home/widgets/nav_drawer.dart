@@ -7,9 +7,7 @@ import 'package:masterpost/screens/gallery/gallery.dart';
 import 'package:masterpost/screens/home/home_screen.dart';
 import 'package:masterpost/screens/login/login_screen.dart';
 import 'package:masterpost/utils/masterColors.dart';
-import 'package:masterpost/utils/myDialog.dart';
 import 'package:masterpost/utils/my_help_dialog.dart';
-import 'package:url_launcher/url_launcher.dart' as launcher;
 
 
 class NavDrawer extends StatelessWidget {

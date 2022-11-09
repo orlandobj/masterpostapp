@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:nb_utils/nb_utils.dart';
 import 'package:masterpost/services/FileService.dart';
 import 'package:masterpost/utils/Colors.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 import '../main.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nb_utils/nb_utils.dart';
 import 'package:masterpost/utils/Colors.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 class HomeItemWidget extends StatelessWidget {
   static String tag = '/HomeItemWidget';

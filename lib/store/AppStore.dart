@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:masterpost/utils/Colors.dart';
 import 'package:mobx/mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:masterpost/utils/Colors.dart';
 
 part 'AppStore.g.dart';
 
